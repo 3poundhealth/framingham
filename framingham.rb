@@ -8,10 +8,6 @@ def help
   "Framingham display help info..."
 end
 
-def version
-  "version: " + VERSION
-end
-
 protected
 
 def to_i value

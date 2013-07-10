@@ -2,6 +2,17 @@ lib = File.expand_path('./framingham')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 $LOAD_PATH << lib
 
+require 'date'
+require 'fileutils'
+
+version = "0.1." + DateTime.now.new_offset(0).strftime("%Y%m%d%H%M%S")
+File.open('framingham/version.rb','w'){ |_|
+  _.puts "module Framingham"
+  _.puts "  VERSION = \"" + version + "\""
+  _.puts "end"
+}
+FileUtils.ln_sf "framingham-" + version + ".gem", "framingham.gem"
+
 require 'version'
 
 Gem::Specification.new{ |_|

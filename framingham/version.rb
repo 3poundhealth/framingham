@@ -1,3 +1,3 @@
 module Framingham
-  VERSION = "0" unless defined? VERSION
+  VERSION = "0.1.20130710222706"
 end
