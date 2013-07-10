@@ -1,4 +1,4 @@
-module Framingham::Heartdisease extend self
+module Framingham::Heartdisease extend Framingham, self
 
 def eval options = {}
   begin
@@ -33,13 +33,35 @@ def eval options = {}
       Math.log(OPTIMAL[:blood_pressure]) * BLOOD_PRESSURE[@gender][:untreated] +
       Math.log(OPTIMAL[:body_mass_index]) * BODY_MASS_INDEX[@gender]
     )
+    age_range = 10..86
+    age = 0
+    heart_age = lambda{
+      while (age_range.max - age_range.min) > 0.2 do
+        age = (age_range.max + age_range.min) / 2.0
+        test_risk = 1 - POWER_BASE[@gender] ** Math.exp(
+          BETA_ZERO[@gender] + Math.log(age) * AGE[@gender] +
+          Math.log(NORMAL[:blood_pressure]) * BLOOD_PRESSURE[@gender][:untreated] +
+          Math.log(NORMAL[:body_mass_index]) * BODY_MASS_INDEX[@gender]
+        )
+        age_range = test_risk < risk ? age..age_range.max : age_range = age_range.min..age
+      end
+      age
+    }.call
     {
-      heart_age: options[:age],
-      risk: "%.1f" % (100 * risk),
-      normal: "%.1f" % (normal * 100),
-      optimal: "%.1f" % (optimal * 100)
+      heart_age: heart_age,
+      risk:      risk,
+      normal:    normal,
+      optimal:   optimal
     }
   end
+end
+
+def pretty _
+  result = eval _
+  puts "Heart Age: " + result[:heart_age].to_i.to_s
+  puts "Risk:      " + "%4.1f%%" % (result[:risk] * 100)
+  puts "Normal:    " + "%4.1f%%" % (result[:normal] * 100)
+  puts "Optimal:   " + "%4.1f%%" % (result[:optimal] * 100)
 end
 
 def help

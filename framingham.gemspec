@@ -7,8 +7,8 @@ require 'version'
 Gem::Specification.new{ |_|
   _.name          = "framingham"
   _.version       = Framingham::VERSION
-  _.author        = ""
-  _.summary       = ""
+  _.author        = "3PoundHealth"
+  _.summary       = "Gem to implement Framingham Heart Study calculators"
   _.license       = "MIT"
   _.files         = `git ls-files`.split($/)
   _.executables   = _.files.grep(%r{^/}) { |f| File.basename(f) }
