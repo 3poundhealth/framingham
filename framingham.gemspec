@@ -11,7 +11,7 @@ File.open('framingham/version.rb','w'){ |_|
   _.puts "  VERSION = \"" + version + "\""
   _.puts "end"
 }
-FileUtils.ln_sf "framingham-" + version + ".gem", "framingham.gem"
+FileUtils.ln_sf "pkg/framingham-" + version + ".gem", "framingham.gem"
 
 require 'version'
 
@@ -19,6 +19,7 @@ Gem::Specification.new{ |_|
   _.name          = "framingham"
   _.version       = Framingham::VERSION
   _.author        = "3PoundHealth"
+  _.homepage      = "https://github.com/3poundhealth/framingham#framingham"
   _.summary       = "Gem to implement Framingham Heart Study calculators"
   _.license       = "MIT"
   _.files         = `git ls-files`.split($/)
