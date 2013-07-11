@@ -3,10 +3,6 @@ require "rake/testtask"
 
 task :default => [:build, :test]
 
-task :build do
-  "bundle install framingham"
-end
-
 task :deploy do
   Rake::Task[:build].execute
   Rake::Task[:test].execute
