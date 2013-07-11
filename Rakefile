@@ -4,7 +4,7 @@ require "rake/testtask"
 task :default => [:build]
 
 task :build do
-  bundle install framingham
+  "bundle install framingham"
 end
 
 Rake::TestTask.new { |_|

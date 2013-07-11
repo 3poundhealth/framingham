@@ -18,5 +18,3 @@ end
 
 end
 
-puts self.eval ARGV[0].to_s if ARGV.length !=0
-

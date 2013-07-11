@@ -1,6 +1,5 @@
 module Framingham::Heartdisease extend Framingham, self
-
-public
+include Framingham
 
 def eval options = {}
   begin
@@ -71,6 +70,14 @@ def help
 end
 
 protected
+
+def internal_debug _ = {}
+  _ = eval _
+  '%i' % _[:heart_age].round +
+  '%5.1f' % ((1000 * _[:risk]).round / 10.0) +
+  '%5.1f' % ((1000 * _[:normal]).round / 10.0) +
+  '%5.1f' % ((1000 * _[:optimal]).round / 10.0)
+end
 
 $, = ", " #default join
 
