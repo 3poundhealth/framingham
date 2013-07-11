@@ -1,7 +1,7 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
 
-task :default => [:build, :test]
+task default: [:build, :test]
 
 task :deploy do
   Rake::Task[:build].execute
