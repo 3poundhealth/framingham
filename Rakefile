@@ -8,7 +8,9 @@ task :build do
 end
 
 task :deploy do
-  Rake::Task[:build].execute Rake::Task[:test].execute and sh "gem push framingham.gem"
+  Rake::Task[:build].execute
+  Rake::Task[:test].execute
+  sh "gem push framingham.gem"
 end
 
 Rake::TestTask.new { |_|
