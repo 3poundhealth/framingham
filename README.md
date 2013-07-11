@@ -22,9 +22,8 @@ Or install it yourself as:
 
 ## Usage
 
----
 ### Public Class Methods ###
-![](http://ruby-doc.org/images/brick.png) ::eval(options) → Float or Error String
+![](http://ruby-doc.org/images/brick.png) ::eval(options) → <code>Hash&lt;<span style="color:purple">​Symbol</span>, <span style="color:cadetblue">Numeric</span>&gt;</span>{:heart_age, :risk, :normal, :optimal}</code> or Error String
 
         Evaluates Framingham::Heartdisease score
   

@@ -1,5 +1,7 @@
 module Framingham::Heartdisease extend Framingham, self
 
+public
+
 def eval options = {}
   begin
     #initialize
