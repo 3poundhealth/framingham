@@ -5,10 +5,10 @@ def eval options = {}
   begin
     #initialize
     options = NORMAL.merge options
-    @age = options[:age]
-    @blood_pressure = options[:blood_pressure]
+    @age = options[:age].to_f
+    @blood_pressure = options[:blood_pressure].to_f
     @blood_pressure_treatment = options[:blood_pressure_treatment] ? :treated : :untreated
-    @body_mass_index = options[:body_mass_index]
+    @body_mass_index = options[:body_mass_index].to_f
     @gender = options[:gender]
     @diabetes = to_i options[:diabetes]
     @smoker = to_i options[:smoker]
