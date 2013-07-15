@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
-load 'framingham/version.rb'
+require 'framingham/version.rb'
 load 'framingham/heartdisease.rb'
+load 'framingham/diabetes.rb'
 
 module Framingham extend self
 
