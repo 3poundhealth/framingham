@@ -12,7 +12,11 @@ end
 task :upgrade do
   Rake::Task[:build].execute
   Rake::Task[:test].execute
-  sh "/usr/bin/su-to-root -X -c 'gem uninstall framingham && gem install ./framingham.gem'"
+  begin
+    sh "gem uninstall framingham && gem install ./framingham.gem"
+  rescue => exception
+    abort "\033[31merror: did you not sudo? \033[0m"
+  end
 end
 
 Rake::TestTask.new { |_|
