@@ -12,7 +12,7 @@ end
 task :upgrade do
   Rake::Task[:build].execute
   Rake::Task[:test].execute
-  sh "/usr/bin/su-to-root -X -c 'gem install ./framingham.gem'"
+  sh "/usr/bin/su-to-root -X -c 'gem uninstall framingham && gem install ./framingham.gem'"
 end
 
 Rake::TestTask.new { |_|
