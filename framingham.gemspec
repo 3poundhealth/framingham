@@ -22,7 +22,7 @@ Gem::Specification.new{ |_|
   _.homepage      = "https://github.com/3poundhealth/framingham#framingham"
   _.summary       = "Gem to implement Framingham Heart Study calculators"
   _.license       = "MIT"
-  _.files         = `git ls-files`.split($/)
+  _.files         = `git ls-files`.split($/).push("framingham/version.rb")
   _.executables   = _.files.grep(%r{^/}) { |f| File.basename(f) }
   _.test_files    = _.files.grep(%r{^(test|spec|features)/})
   _.require_path  = "."

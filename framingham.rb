@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require 'framingham/version.rb'
+require './framingham/version'
 load 'framingham/heartdisease.rb'
 load 'framingham/diabetes.rb'
 

@@ -12,6 +12,8 @@ def eval options = {}
     @gender = options[:gender]
     @diabetes = to_i options[:diabetes]
     @smoker = to_i options[:smoker]
+    #validate
+    raise ERRORS[:gender] unless GENDERS.include? @gender
   rescue => exception
     abort "\033[31merror: " + exception.message + "\033[0m"
   else
@@ -81,7 +83,7 @@ end
 
 $, = ", " #default join
 
-NORMAL = { #default options
+::NORMAL = { #default options
   age:                      30,
   blood_pressure:           125,
   blood_pressure_treatment: false,
@@ -91,45 +93,45 @@ NORMAL = { #default options
   smoker:                   false
 } unless defined? NORMAL
 
-OPTIMAL = NORMAL.merge({
+::OPTIMAL = NORMAL.merge({
   blood_pressure:           110,
   body_mass_index:          22
 }) unless defined? OPTIMAL
 
-AGE_RANGE = (30..79) unless defined? AGE_RANGE
+::AGE_RANGE = (30..79) unless defined? AGE_RANGE
 
-BLOOD_PRESSURE_RANGE = (90..200) unless defined? BLOOD_PRESSURE_RANGE
+::BLOOD_PRESSURE_RANGE = (90..200) unless defined? BLOOD_PRESSURE_RANGE
 
-BMI_RANGE = (15..50) unless defined? BMI_RANGE
+::BMI_RANGE = (15..50) unless defined? BMI_RANGE
 
-GENDERS = [
+::GENDERS = [
   :male,
   :female
 ] unless defined? GENDERS
 
-ERRORS = {
+::ERRORS = {
   age:              "age must be in range: " + AGE_RANGE.to_s,
   blood_pressure:   "blood pressure must be in range: " + BLOOD_PRESSURE_RANGE.to_s,
   bmi:              "bmi must be in range: " + BMI_RANGE.to_s,
   gender:           "invalid gender, options: " + GENDERS.join,
 } unless defined? ERRORS
 
-BETA_ZERO = {
+::BETA_ZERO = {
   male:   -23.9388,
   female: -26.0145
 } unless defined? BETA_ZERO
 
-POWER_BASE = {
+::POWER_BASE = {
   male:   0.88431,
   female: 0.94833
 } unless defined? POWER_BASE
 
-AGE = {
+::AGE = {
   male:   3.11296,
   female: 2.72107
 } unless defined? AGE
 
-BLOOD_PRESSURE = {
+::BLOOD_PRESSURE = {
   male:{
     treated:   1.92672,
     untreated: 1.85508
@@ -140,17 +142,17 @@ BLOOD_PRESSURE = {
   }
 } unless defined? BLOOD_PRESSURE
 
-BODY_MASS_INDEX = {
+::BODY_MASS_INDEX = {
   male:   0.79277,
   female: 0.51125
 } unless defined? BODY_MASS_INDEX
 
-DIABETES = {
+::DIABETES = {
   male:   0.5316,
   female: 0.77763
 } unless defined? DIABETES
 
-SMOKER = {
+::SMOKER = {
   male:   0.70953,
   female: 0.61868
 } unless defined? SMOKER

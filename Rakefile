@@ -9,6 +9,12 @@ task :deploy do
   sh "gem push framingham.gem"
 end
 
+task :upgrade do
+  Rake::Task[:build].execute
+  Rake::Task[:test].execute
+  sh "/usr/bin/su-to-root -X -c 'gem install ./framingham.gem'"
+end
+
 Rake::TestTask.new { |_|
   _.test_files = FileList['framingham/*_tests.rb']
   _.verbose = true
