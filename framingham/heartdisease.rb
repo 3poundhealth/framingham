@@ -9,7 +9,7 @@ def eval options = {}
     @blood_pressure = options[:blood_pressure].to_f
     @blood_pressure_treatment = options[:blood_pressure_treatment] ? :treated : :untreated
     @body_mass_index = options[:body_mass_index].to_f
-    @gender = options[:gender]
+    @gender = options[:gender].to_sym
     @diabetes = to_i options[:diabetes]
     @smoker = to_i options[:smoker]
     #validate
