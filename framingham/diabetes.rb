@@ -13,13 +13,14 @@ def eval options = {}
     @gender = options[:gender].to_sym
     @hdl = options[:hdl].to_f
     @triglyceride = options[:triglyceride].to_f
-    puts options.to_s
     #validate
     raise ERRORS[:gender] unless GENDERS.include? @gender
   rescue => exception
     abort "\033[31merror: " + exception.message + "\033[0m"
   else
     #calculate
+=begin debug stuff
+    puts options.to_s
     puts "50-65:               " + (50...65).include?(@age).to_s
     puts "65+:                 " + (@age >= 65).to_s
     puts "blood_pressure >130: " + (@blood_pressure > 130).to_s
@@ -30,7 +31,7 @@ def eval options = {}
     puts "gender:              " + @gender.to_s
     puts "hdl:                 " + (@gender.eql?(:female) and @hdl < 50 or @hdl < 40).to_s
     puts "triglyceride >= 150: " + (@triglyceride >= 150).to_s
-
+=end
     risk_factor = BETA_ZERO[@gender]
     risk_factor += 0.018 if (50...65).include? @age
     risk_factor += 0.081 if @age >= 65
@@ -51,9 +52,7 @@ end
 
 protected
 
-$, = ", " #default join
-
-::NORMAL = { #default options
+NORMAL = { #default options
   age:                      30,
   blood_pressure:           125,
   body_mass_index:          22.5,
@@ -62,21 +61,16 @@ $, = ", " #default join
   gender:                  :female,
   hdl:                      60,
   triglyceride:             130
-} unless defined? ::NORMAL
+} unless defined? NORMAL
 
-::GENDERS = [
-  :male,
-  :female
-] unless defined? ::GENDERS
+ERRORS = {
+  gender: "invalid gender, options: " + GENDERS.join
+} unless defined? ERRORS
 
-::ERRORS = {
-  gender: "invalid gender, options: " + GENDERS.join,
-} unless defined? ::ERRORS
-
-::BETA_ZERO = {
-  male:   5.517+0.010,
+BETA_ZERO = {
+  male:   5.517 + 0.010,
   female: 5.517
-} unless defined? ::BETA_ZERO
+}
 
 end
 

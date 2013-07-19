@@ -20,6 +20,6 @@ task :upgrade do
 end
 
 Rake::TestTask.new { |_|
-  _.test_files = FileList['framingham/*_tests.rb']
+  _.test_files = FileList['framingham/tests/*.rb']
   _.verbose = true
 }
